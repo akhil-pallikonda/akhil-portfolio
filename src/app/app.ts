@@ -1,11 +1,17 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { Introduction } from './introduction/introduction'; // Updated import
+import { About } from './about/about';
+import { Skills } from './skills/skills';
 
 @Component({
   selector: 'app-root',
-  imports: [],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  standalone: true,
+  imports: [Introduction, About, Skills], // Updated imports array
+  template: `
+    <main class="min-h-screen bg-appleBlack">
+      <app-introduction />  <app-about />
+      <app-skills />
+    </main>
+  `
 })
-export class App {
-  protected readonly title = signal('akhil-portfolio');
-}
+export class App {}
