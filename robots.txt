@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://akhil-pallikonda.github.io/akhil-portfolio/sitemap.xml
