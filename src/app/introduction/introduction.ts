@@ -6,4 +6,8 @@ import { Component } from '@angular/core';
   templateUrl: './introduction.html',
   styleUrl: './introduction.scss',
 })
-export class Introduction {}
+export class Introduction {
+  scrollToExperience(): void {
+    document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+  }
+}
