@@ -1,49 +1,37 @@
 <section id="experience" class="max-w-4xl mx-auto py-24 px-6">
-    <h2 class="text-4xl font-medium mb-16 text-center">Professional Journey</h2>
-
-    <div class="space-y-16 border-l border-[#333] ml-4 md:ml-0 pl-6 md:pl-10 relative">
-
-        <div class="relative">
-            <div
-                class="absolute -left-[33px] md:-left-[49px] top-1 h-4 w-4 rounded-full bg-appleBlue border-4 border-appleBlack">
-            </div>
-            <h3 class="text-2xl font-medium text-appleText">Verizon</h3>
-            <p class="text-appleBlue mb-4">Engg. III • Apr 2022 - Dec 2025</p>
-            <ul class="text-appleMuted space-y-3 list-disc ml-4">
-                <li>Architected a 3rd-party subscriptions dashboard processing 130+ req/hr at 0.5s response time for
-                    500K+ daily customers.</li>
-                <li>Modernized legacy UI by migrating iframe-based workflows to React, achieving 90%+ code coverage.
-                </li>
-                <li>Led migration of 10+ high-performance APIs processing over 500K daily transactions.</li>
-            </ul>
+    <div class="flex flex-col md:flex-row justify-between items-center mb-16 gap-4">
+        <h2 class="text-4xl font-medium text-center md:text-left">Professional Journey</h2>
+        <div class="relative w-full md:w-72">
+            <input type="text" [formControl]="searchControl" placeholder="Search experience..."
+                class="w-full bg-appleSurface text-appleText placeholder-appleMuted border border-[#333] rounded-full px-5 py-2 focus:outline-none focus:border-appleBlue transition-colors" />
+            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-appleMuted" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
         </div>
-
-        <div class="relative">
-            <div
-                class="absolute -left-[33px] md:-left-[49px] top-1 h-4 w-4 rounded-full bg-[#333] border-4 border-appleBlack">
-            </div>
-            <h3 class="text-2xl font-medium text-appleText">Deloitte</h3>
-            <p class="text-appleMuted mb-4">Analyst • Jun 2021 - Apr 2022</p>
-            <ul class="text-appleMuted space-y-3 list-disc ml-4">
-                <li>Developed the Subscription Admin Internal Portal for Ascension Health, supporting 140K+ employees
-                    across 90 hospitals.</li>
-                <li>Engineered Spring Boot EDSL Read Service APIs on GCP to handle HIPAA-compliant PHI data from FHIR
-                    stores.</li>
-            </ul>
-        </div>
-
-        <div class="relative">
-            <div
-                class="absolute -left-[33px] md:-left-[49px] top-1 h-4 w-4 rounded-full bg-[#333] border-4 border-appleBlack">
-            </div>
-            <h3 class="text-2xl font-medium text-appleText">Tata Consultancy Services</h3>
-            <p class="text-appleMuted mb-4">System Engineer • Mar 2018 - Jun 2021</p>
-            <ul class="text-appleMuted space-y-3 list-disc ml-4">
-                <li>Built the RedApp Customer Feedback Service for Qantas Airways, empowering 1,500+ ground staff.</li>
-                <li>Implemented Optimum Wellness Plans workflow in Angular for Banfield Pet Hospital, supporting 3M+
-                    pets annually.</li>
-            </ul>
-        </div>
-
     </div>
+
+    @if (filteredExperiences.length > 0) {
+    <div class="space-y-16 border-l border-[#333] ml-4 md:ml-0 pl-6 md:pl-10 relative">
+        @for (exp of filteredExperiences; track exp.company) {
+        <div class="relative">
+            <div
+                class="absolute -left-[33px] md:-left-[49px] top-1 h-4 w-4 rounded-full border-4 {{ exp.markerColorClass }}">
+            </div>
+            <h3 class="text-2xl font-medium text-appleText">{{ exp.company }}</h3>
+            <p class="mb-4" [class.text-appleBlue]="exp.markerColorClass.includes('appleBlue')" [class.text-appleMuted]="!exp.markerColorClass.includes('appleBlue')">{{ exp.roleAndDate }}</p>
+            <ul class="text-appleMuted space-y-3 list-disc ml-4">
+                @for (bullet of exp.bullets; track bullet) {
+                <li>{{ bullet }}</li>
+                }
+            </ul>
+        </div>
+        }
+    </div>
+    } @else {
+    <div class="text-center py-12">
+        <p class="text-appleMuted text-lg">No experience found matching your search.</p>
+    </div>
+    }
 </section>
