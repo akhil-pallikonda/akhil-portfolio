@@ -59,7 +59,7 @@ export class Experience implements OnInit, OnDestroy {
 
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(50),
+        debounceTime(200),
         distinctUntilChanged(),
         takeUntil(this.destroy$)
       )
