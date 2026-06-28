@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, ChangeDetectorRef } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnDestroy, ChangeDetectorRef, afterNextRender } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime, tap } from 'rxjs/operators';
 import { Introduction } from './introduction/introduction'; // Updated import
@@ -36,26 +35,24 @@ import { Experience } from './experience/experience';
     }
   `
 })
-export class App implements OnInit, OnDestroy {
+export class App implements OnDestroy {
   private scrollSubscription?: Subscription;
   
   // UX State variables
   scrollProgress = 0;
   showBackToTop = false;
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private cdr: ChangeDetectorRef
-  ) {}
-
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
+  constructor(private cdr: ChangeDetectorRef) {
+    // afterNextRender guarantees this only runs in the browser, after the DOM is fully rendered/hydrated
+    afterNextRender(() => {
       this.setupScrollListener();
-    }
+    });
   }
 
+
+
   setupScrollListener() {
-    this.scrollSubscription = fromEvent(document, 'scroll', { passive: true })
+    this.scrollSubscription = fromEvent(window, 'scroll', { passive: true })
       .pipe(
         throttleTime(100, undefined, { leading: true, trailing: true }),
         tap(() => this.onWindowScroll())
@@ -64,7 +61,7 @@ export class App implements OnInit, OnDestroy {
   }
 
   onWindowScroll() {
-    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+    const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
     
     // Logic 1: Show "Back to Top" button when scrolled down more than 300px
     this.showBackToTop = scrollPosition > 300;
@@ -82,9 +79,7 @@ export class App implements OnInit, OnDestroy {
   }
 
   scrollToTop() {
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   ngOnDestroy() {
