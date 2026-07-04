@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
+import { ScrollAnimateDirective } from '../shared/scroll-animate.directive';
+
 
 interface SkillCategory {
   title: string;
@@ -11,7 +13,7 @@ interface SkillCategory {
 
 @Component({
   selector: 'app-skills',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ScrollAnimateDirective],
   templateUrl: './skills.html',
   styleUrl: './skills.scss',
 })

@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { ScrollAnimateDirective } from '../shared/scroll-animate.directive';
 
 @Component({
-  selector: 'app-about',
+  selector: 'app-contact',
   standalone: true,
   imports: [ScrollAnimateDirective],
-  templateUrl: './about.html',
-  styleUrl: './about.scss',
+  templateUrl: './contact.html',
+  styleUrl: './contact.scss',
 })
-export class About {}
+export class Contact {
+  currentYear = new Date().getFullYear();
+}

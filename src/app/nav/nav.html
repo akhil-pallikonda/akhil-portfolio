@@ -1,0 +1,87 @@
+<nav
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+  [class.nav-scrolled]="isScrolled"
+  [class.nav-hidden]="isNavHidden"
+>
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <button
+      (click)="scrollTo('hero')"
+      id="nav-logo"
+      class="text-appleText font-semibold text-lg tracking-tight hover:text-appleBlue transition-colors"
+    >
+      Akhil<span class="text-appleBlue">.</span>
+    </button>
+
+    <!-- Desktop Links -->
+    <div class="hidden md:flex items-center gap-1">
+      @for (link of navLinks; track link.sectionId) {
+        <button
+          (click)="scrollTo(link.sectionId)"
+          [id]="'nav-' + link.sectionId"
+          class="nav-link px-4 py-2 rounded-full text-sm font-medium transition-all duration-200"
+          [class.active]="activeSection === link.sectionId"
+        >
+          {{ link.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Resume CTA + Hamburger -->
+    <div class="flex items-center gap-3">
+      <button
+        (click)="downloadResume()"
+        id="nav-resume-btn"
+        class="hidden md:flex items-center gap-2 bg-appleBlue text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 hover:scale-105 transition-all duration-200"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Resume
+      </button>
+
+      <!-- Hamburger -->
+      <button
+        (click)="toggleMobileMenu()"
+        id="nav-mobile-menu-btn"
+        class="md:hidden p-2 rounded-lg text-appleMuted hover:text-appleText transition-colors"
+        aria-label="Toggle menu"
+      >
+        @if (isMobileMenuOpen) {
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        } @else {
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        }
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  @if (isMobileMenuOpen) {
+    <div class="md:hidden mobile-menu border-t border-[#1C1C1E] px-6 py-4 space-y-2">
+      @for (link of navLinks; track link.sectionId) {
+        <button
+          (click)="scrollTo(link.sectionId)"
+          class="w-full text-left px-4 py-3 rounded-xl text-appleMuted hover:text-appleText hover:bg-appleSurface transition-all text-sm"
+          [class.text-appleBlue]="activeSection === link.sectionId"
+        >
+          {{ link.label }}
+        </button>
+      }
+      <button
+        (click)="downloadResume()"
+        id="nav-mobile-resume-btn"
+        class="w-full flex items-center gap-2 justify-center bg-appleBlue text-white px-5 py-3 rounded-full text-sm font-medium mt-2"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+        </svg>
+        Download Resume
+      </button>
+    </div>
+  }
+</nav>

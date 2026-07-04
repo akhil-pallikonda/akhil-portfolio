@@ -1,0 +1,111 @@
+.hero-section {
+  background: #000;
+}
+
+/* Animated dot-grid background */
+.dot-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  animation: gridDrift 20s ease-in-out infinite alternate;
+}
+
+@keyframes gridDrift {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-8px, -8px); }
+}
+
+/* Radial glow behind content */
+.hero-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(41, 151, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+  0% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+/* Profile Photo */
+.profile-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #2997ff, #0a84ff, #5ac8fa);
+  box-shadow: 0 0 0 4px rgba(41, 151, 255, 0.15), 0 0 40px rgba(41, 151, 255, 0.25);
+  animation: ringPulse 3s ease-in-out infinite alternate;
+  z-index: 10;
+}
+
+@keyframes ringPulse {
+  0% { box-shadow: 0 0 0 4px rgba(41, 151, 255, 0.15), 0 0 40px rgba(41, 151, 255, 0.25); }
+  100% { box-shadow: 0 0 0 6px rgba(41, 151, 255, 0.25), 0 0 60px rgba(41, 151, 255, 0.4); }
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  background: #1c1c1e;
+}
+
+/* Gradient name */
+.hero-name {
+  background: linear-gradient(135deg, #f5f5f7 0%, #a0c8ff 50%, #2997ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% auto;
+  animation: nameShimmer 5s linear infinite;
+}
+
+@keyframes nameShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Typewriter cursor */
+.cursor {
+  display: inline-block;
+  color: #2997ff;
+  font-weight: 300;
+  margin-left: 1px;
+  transition: opacity 0.1s;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.4;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scroll-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #86868b;
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.4; }
+  50% { transform: translateX(-50%) translateY(6px); opacity: 0.8; }
+}

@@ -1,31 +1,43 @@
 import { Component, OnDestroy, ChangeDetectorRef, afterNextRender } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { throttleTime, tap } from 'rxjs/operators';
-import { Introduction } from './introduction/introduction'; // Updated import
+import { Introduction } from './introduction/introduction';
 import { About } from './about/about';
 import { Skills } from './skills/skills';
 import { Experience } from './experience/experience';
+import { Nav } from './nav/nav';
+import { Stats } from './stats/stats';
+import { Projects } from './projects/projects';
+import { Contact } from './contact/contact';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [Introduction, About, Skills, Experience], // Updated imports array
+  imports: [Introduction, About, Skills, Experience, Nav, Stats, Projects, Contact],
   template: `
     <!-- Scroll Progress Bar -->
-    <div class="fixed top-0 left-0 h-1 bg-appleBlue z-50 transition-all duration-150 ease-out" 
+    <div class="fixed top-0 left-0 h-0.5 bg-appleBlue z-[60] transition-all duration-150 ease-out"
          [style.width.%]="scrollProgress">
     </div>
 
+    <!-- Navigation -->
+    <app-nav />
+
     <main class="min-h-screen bg-appleBlack relative">
-      <app-introduction />  <app-about />
+      <app-introduction />
+      <app-stats />
+      <app-about />
       <app-skills />
       <app-experience />
+      <app-projects />
+      <app-contact />
     </main>
 
     <!-- Back to Top Button -->
     @if (showBackToTop) {
-      <button 
+      <button
         (click)="scrollToTop()"
+        id="back-to-top-btn"
         class="fixed bottom-8 right-8 p-3 rounded-full bg-appleSurface text-appleBlue border border-appleMuted/20 hover:border-appleBlue hover:scale-110 transition-all duration-300 shadow-lg z-50 flex items-center justify-center group"
         aria-label="Back to top">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 group-hover:-translate-y-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,19 +49,15 @@ import { Experience } from './experience/experience';
 })
 export class App implements OnDestroy {
   private scrollSubscription?: Subscription;
-  
-  // UX State variables
+
   scrollProgress = 0;
   showBackToTop = false;
 
   constructor(private cdr: ChangeDetectorRef) {
-    // afterNextRender guarantees this only runs in the browser, after the DOM is fully rendered/hydrated
     afterNextRender(() => {
       this.setupScrollListener();
     });
   }
-
-
 
   setupScrollListener() {
     this.scrollSubscription = fromEvent(window, 'scroll', { passive: true })
@@ -62,19 +70,16 @@ export class App implements OnDestroy {
 
   onWindowScroll() {
     const scrollPosition = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Logic 1: Show "Back to Top" button when scrolled down more than 300px
+
     this.showBackToTop = scrollPosition > 300;
 
-    // Logic 2: Calculate scroll progress for the top bar
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     if (scrollHeight > 0) {
       this.scrollProgress = (scrollPosition / scrollHeight) * 100;
     } else {
       this.scrollProgress = 0;
     }
-    
-    // Explicitly trigger change detection since throttleTime can sometimes cause zone issues
+
     this.cdr.detectChanges();
   }
 

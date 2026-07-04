@@ -1,11 +1,15 @@
-<section class="max-w-5xl mx-auto py-24 px-6">
-    <div class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
-        <h2 class="text-4xl font-medium text-appleText">Skills & Expertise</h2>
+<section id="skills" class="max-w-5xl mx-auto py-24 px-6">
+    <div scrollAnimate [animationDelay]="0" class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
+        <div>
+            <p class="text-appleBlue text-sm font-medium tracking-[0.1em] uppercase mb-2">What I Work With</p>
+            <h2 class="text-4xl font-medium text-appleText">Skills &amp; Expertise</h2>
+        </div>
         <div class="relative w-full md:w-72">
             <input type="text" [formControl]="searchControl" placeholder="Search skills..."
+                id="skills-search"
                 class="w-full bg-appleSurface text-appleText placeholder-appleMuted border border-[#333] rounded-full px-5 py-2 focus:outline-none focus:border-appleBlue transition-colors" />
             <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-appleMuted" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
             </svg>
@@ -13,14 +17,30 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        @for (category of filteredSkillCategories; track category.title) {
-        <div class="bg-appleSurface p-10 rounded-[24px] hover:scale-[1.02] transition-transform" [class.md:col-span-2]="category.title === 'Backend & Databases'">
-            <h3 class="text-2xl font-medium text-appleText mb-2">{{ category.title }}</h3>
+        @for (category of filteredSkillCategories; track category.title; let i = $index) {
+        <div
+            scrollAnimate
+            [animationDelay]="i * 100"
+            class="skill-card bg-appleSurface p-10 rounded-[24px]"
+            [class.md:col-span-2]="category.title === 'Backend & Databases'"
+        >
+            <div class="flex items-center gap-3 mb-2">
+                <!-- Category Icon -->
+                @if (category.title === 'Backend & Databases') {
+                  <span class="category-icon">⚡</span>
+                } @else if (category.title === 'Frontend & UX') {
+                  <span class="category-icon">🎨</span>
+                } @else {
+                  <span class="category-icon">☁️</span>
+                }
+                <h3 class="text-2xl font-medium text-appleText">{{ category.title }}</h3>
+            </div>
             <p class="text-appleMuted text-sm mb-6" [class.text-lg]="category.title === 'Backend & Databases'">{{ category.subtitle }}</p>
             @if (category.skills.length > 0) {
             <div class="flex flex-wrap gap-2 text-sm">
                 @for (skill of category.skills; track skill) {
-                <span class="bg-black text-appleMuted px-4 py-2 rounded-full border border-[#333]">
+                <span class="skill-tag">
+                    <span class="skill-dot"></span>
                     {{ skill }}
                 </span>
                 }
