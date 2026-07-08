@@ -41,6 +41,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/akhil-portfolio/",
               "budgets": [
                 {
                   "type": "initial",
