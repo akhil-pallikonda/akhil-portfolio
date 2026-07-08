@@ -1,5 +1,20 @@
 .contact-section {
+  padding: clamp(5rem, 12vw, 9rem) clamp(1rem, 5vw, 2rem);
   background: radial-gradient(ellipse at 50% 0%, rgba(41, 151, 255, 0.08) 0%, transparent 70%);
+}
+
+.contact-heading {
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 1.1;
+  margin-bottom: 1.25rem;
+
+  @media (min-width: 768px) {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.contact-body {
+  font-size: clamp(0.95rem, 2.5vw, 1.2rem);
 }
 
 .gradient-text {
@@ -14,9 +29,11 @@
   box-shadow: 0 8px 32px rgba(41, 151, 255, 0.3);
   transition: all 0.3s ease;
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 16px 48px rgba(41, 151, 255, 0.45);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(41, 151, 255, 0.45);
+    }
   }
 
   &:active {
@@ -30,17 +47,21 @@
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
   color: #86868b;
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.25s ease;
 
-  &:hover {
-    background: rgba(41, 151, 255, 0.12);
-    color: #2997ff;
-    border-color: rgba(41, 151, 255, 0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(41, 151, 255, 0.2);
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(41, 151, 255, 0.12);
+      color: #2997ff;
+      border-color: rgba(41, 151, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(41, 151, 255, 0.2);
+    }
   }
 }

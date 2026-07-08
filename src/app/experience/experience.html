@@ -1,78 +1,84 @@
-<section id="experience" class="max-w-4xl mx-auto py-24 px-6">
-    <div scrollAnimate [animationDelay]="0" class="flex flex-col md:flex-row justify-between items-center mb-16 gap-4">
-        <div>
-            <p class="text-appleBlue text-sm font-medium tracking-[0.1em] uppercase mb-2">My Journey</p>
-            <h2 class="text-4xl font-medium text-center md:text-left">Professional Journey</h2>
-        </div>
-        <div class="relative w-full md:w-72">
-            <input type="text" [formControl]="searchControl" placeholder="Search experience..."
-                id="experience-search"
-                class="w-full bg-appleSurface text-appleText placeholder-appleMuted border border-[#333] rounded-full px-5 py-2 focus:outline-none focus:border-appleBlue transition-colors" />
-            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-appleMuted" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-        </div>
+<section id="experience" class="experience-section">
+  <div class="max-w-4xl mx-auto">
+    <div scrollAnimate [animationDelay]="0" class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 md:mb-16 gap-5">
+      <div>
+        <p class="text-appleBlue text-xs sm:text-sm font-medium tracking-[0.1em] uppercase mb-2">My Journey</p>
+        <h2 class="experience-heading font-medium">Professional Journey</h2>
+      </div>
+      <div class="relative w-full md:w-72 shrink-0">
+        <input type="text" [formControl]="searchControl" placeholder="Search experience..."
+          id="experience-search"
+          class="w-full bg-appleSurface text-appleText placeholder-appleMuted border border-[#333] rounded-full px-5 py-2.5 focus:outline-none focus:border-appleBlue transition-colors text-sm" />
+        <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-appleMuted pointer-events-none" fill="none"
+          stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
     </div>
 
     @if (filteredExperiences.length > 0) {
-    <div class="space-y-12 border-l border-[#2a2a2a] ml-4 md:ml-0 pl-6 md:pl-10 relative">
+      <div class="space-y-10 md:space-y-12 border-l border-[#2a2a2a] ml-3 md:ml-0 pl-5 md:pl-10 relative">
         @for (exp of filteredExperiences; track exp.company; let i = $index) {
-        <div scrollAnimate [animationDelay]="i * 120" class="relative">
+          <div scrollAnimate [animationDelay]="i * 120" class="relative">
             <!-- Timeline Dot -->
-            <div class="absolute -left-[33px] md:-left-[49px] top-1.5 h-4 w-4 rounded-full border-4 {{ exp.markerColorClass }}"></div>
+            <div class="timeline-dot absolute -left-[29px] md:-left-[49px] top-1.5 h-4 w-4 rounded-full border-4 {{ exp.markerColorClass }}"></div>
 
             <!-- Header -->
-            <div class="mb-1">
-                <h3 class="text-2xl font-semibold text-appleText">{{ exp.company }}</h3>
-                <div class="flex flex-wrap items-center gap-x-3 gap-y-1 mt-1">
-                    <span [class.text-appleBlue]="exp.markerColorClass.includes('appleBlue')"
-                          [class.text-appleMuted]="!exp.markerColorClass.includes('appleBlue')"
-                          class="font-medium text-sm">{{ exp.role }}</span>
-                    <span class="text-[#444] text-sm">·</span>
-                    <span class="text-appleMuted text-sm">{{ exp.date }}</span>
-                    <span class="text-[#444] text-sm">·</span>
-                    <span class="text-appleMuted text-sm">{{ exp.location }}</span>
-                </div>
+            <div class="mb-3">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-semibold text-appleText">{{ exp.company }}</h3>
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1">
+                <span [class.text-appleBlue]="exp.markerColorClass.includes('appleBlue')"
+                      [class.text-appleMuted]="!exp.markerColorClass.includes('appleBlue')"
+                      class="font-medium text-xs sm:text-sm">{{ exp.role }}</span>
+                <span class="text-[#444] text-sm">·</span>
+                <span class="text-appleMuted text-xs sm:text-sm">{{ exp.date }}</span>
+                <span class="text-[#444] text-sm hidden sm:inline">·</span>
+                <span class="text-appleMuted text-xs sm:text-sm hidden sm:inline">{{ exp.location }}</span>
+              </div>
+              <!-- Location on its own line for very small screens -->
+              <div class="sm:hidden mt-0.5">
+                <span class="text-appleMuted text-xs">{{ exp.location }}</span>
+              </div>
             </div>
 
             <!-- Bullets -->
-            <ul class="text-appleMuted space-y-2.5 list-none ml-0 mt-4">
-                @for (bullet of visibleBullets(exp); track bullet) {
-                <li class="flex gap-3 text-[15px] leading-relaxed">
-                    <span class="bullet-arrow shrink-0 mt-1">→</span>
-                    <span>{{ bullet }}</span>
+            <ul class="text-appleMuted space-y-2 list-none ml-0 mt-3">
+              @for (bullet of visibleBullets(exp); track bullet) {
+                <li class="flex gap-2.5 text-sm sm:text-[15px] leading-relaxed">
+                  <span class="bullet-arrow shrink-0 mt-0.5">→</span>
+                  <span>{{ bullet }}</span>
                 </li>
-                }
+              }
             </ul>
 
             <!-- Expand / Collapse -->
             @if (exp.bullets.length > 2) {
-            <button
+              <button
                 (click)="toggleExpand(exp)"
                 [id]="'exp-toggle-' + exp.company.toLowerCase().replace(' ', '-')"
                 class="mt-4 flex items-center gap-1.5 text-appleBlue text-sm hover:opacity-80 transition-opacity font-medium"
-            >
+              >
                 @if (exp.expanded) {
-                    <svg class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
-                    </svg>
-                    Show less
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+                  </svg>
+                  Show less
                 } @else {
-                    <svg class="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                    Show {{ exp.bullets.length - 2 }} more
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                  </svg>
+                  Show {{ exp.bullets.length - 2 }} more
                 }
-            </button>
+              </button>
             }
-        </div>
+          </div>
         }
-    </div>
+      </div>
     } @else {
-    <div class="text-center py-12">
-        <p class="text-appleMuted text-lg">No experience found matching your search.</p>
-    </div>
+      <div class="text-center py-12">
+        <p class="text-appleMuted text-base sm:text-lg">No experience found matching your search.</p>
+      </div>
     }
+  </div>
 </section>

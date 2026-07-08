@@ -1,38 +1,51 @@
+.skills-section {
+  padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 2rem);
+}
+
+.skills-heading {
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+}
+
 .skill-card {
   border: 1px solid rgba(255, 255, 255, 0.04);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 
-  &:hover {
-    transform: translateY(-4px);
-    border-color: rgba(41, 151, 255, 0.2);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  @media (hover: hover) {
+    &:hover {
+      transform: translateY(-4px);
+      border-color: rgba(41, 151, 255, 0.2);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
   }
 }
 
 .category-icon {
-  font-size: 1.4rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
   line-height: 1;
 }
 
 .skill-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: rgba(0, 0, 0, 0.5);
   color: #86868b;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.07);
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 2vw, 0.8rem);
   font-weight: 500;
   transition: all 0.2s ease;
   letter-spacing: 0.01em;
+  white-space: nowrap;
 
-  &:hover {
-    background: rgba(41, 151, 255, 0.08);
-    color: #2997ff;
-    border-color: rgba(41, 151, 255, 0.2);
-    transform: translateY(-1px);
+  @media (hover: hover) {
+    &:hover {
+      background: rgba(41, 151, 255, 0.08);
+      color: #2997ff;
+      border-color: rgba(41, 151, 255, 0.2);
+      transform: translateY(-1px);
+    }
   }
 }
 

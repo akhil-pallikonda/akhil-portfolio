@@ -1,5 +1,19 @@
+.experience-section {
+  padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 2rem);
+}
+
+.experience-heading {
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
+  color: #f5f5f7;
+}
+
+.timeline-dot {
+  background: #000;
+}
+
 .bullet-arrow {
   color: #2997ff;
   font-size: 0.85rem;
   opacity: 0.8;
+  line-height: 1.6;
 }

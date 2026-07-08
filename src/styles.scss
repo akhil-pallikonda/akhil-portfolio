@@ -1,13 +1,72 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===================================================
+   GLOBAL RESPONSIVE UTILITIES
+   Mobile-first breakpoints:
+   sm: 480px  |  md: 768px  |  lg: 1024px  |  xl: 1280px
+=================================================== */
+
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Base typography scale */
+body {
+  background-color: #000000;
+  color: #F5F5F7;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* Touch target minimum for mobile */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Responsive container helper */
+.section-container {
+  width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 5vw, 2.5rem);
+  padding-right: clamp(1rem, 5vw, 2.5rem);
+}
+
+/* Fluid section vertical spacing */
+.section-padding {
+  padding-top: clamp(4rem, 10vw, 8rem);
+  padding-bottom: clamp(4rem, 10vw, 8rem);
+}
+
+/* Import Tailwind */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: #000000;
-    color: #F5F5F7;
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
+/* ==========================
+   Tailwind layer overrides
+========================== */
+@layer utilities {
+  /* Fluid text helpers */
+  .text-fluid-xs  { font-size: clamp(0.7rem,  1.5vw, 0.8rem); }
+  .text-fluid-sm  { font-size: clamp(0.8rem,  2vw,   0.9rem); }
+  .text-fluid-base{ font-size: clamp(0.9rem,  2.5vw, 1rem); }
+  .text-fluid-lg  { font-size: clamp(1rem,    3vw,   1.2rem); }
+  .text-fluid-xl  { font-size: clamp(1.1rem,  3.5vw, 1.4rem); }
+  .text-fluid-2xl { font-size: clamp(1.25rem, 4vw,   1.75rem); }
+  .text-fluid-3xl { font-size: clamp(1.5rem,  5vw,   2.25rem); }
+  .text-fluid-4xl { font-size: clamp(2rem,    6vw,   3rem); }
+  .text-fluid-5xl { font-size: clamp(2.5rem,  8vw,   4.5rem); }
+  .text-fluid-hero{ font-size: clamp(2.5rem,  10vw,  6rem); }
 }
