@@ -1,6 +1,6 @@
 .about-section {
   padding: clamp(5rem, 12vw, 8rem) clamp(1rem, 5vw, 2.5rem);
-  overflow: visible; /* must NOT be hidden — breaks sticky */
+  overflow: visible; /* NEVER hidden/auto/scroll here — kills sticky */
 }
 
 /* Apple-style thin rule at section top */
@@ -11,29 +11,34 @@
   margin-bottom: clamp(3rem, 7vw, 5rem);
 }
 
-/* Two-column grid — CRITICAL: align-items:start for sticky to work */
+/* Two-column grid
+   RULES for sticky to work:
+   1. align-items: start  (not stretch/normal)
+   2. overflow must be visible on every ancestor between sticky element and viewport
+   3. No transform on any ancestor                                              */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2.5rem;
+  overflow: visible; /* guard */
 
   @media (min-width: 768px) {
     grid-template-columns: 1fr 1.3fr;
     gap: clamp(3rem, 6vw, 5rem);
-    align-items: start; /* REQUIRED — stretch (default) breaks sticky */
+    align-items: start; /* CRITICAL — default stretch makes both cols equal height → no scroll room */
   }
 }
 
-/* Left column wrapper — must not have overflow:hidden or transform */
 .about-left {
-  /* no transform, no overflow:hidden */
+  overflow: visible; /* guard */
 }
 
-/* The sticky block — sits inside the left column */
+/* Sticky block — the element that actually sticks */
 .about-sticky {
   @media (min-width: 768px) {
     position: sticky;
-    top: 5.5rem; /* 88px — clears the 64px nav */
+    top: 5.5rem; /* 88px — clears the fixed 64px nav */
+    /* No transform, no opacity transition here */
   }
 }
 

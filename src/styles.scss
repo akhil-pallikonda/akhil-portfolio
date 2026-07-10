@@ -4,11 +4,17 @@
    sm: 480px  |  md: 768px  |  lg: 1024px  |  xl: 1280px
 =================================================== */
 
-/* Prevent horizontal overflow globally */
-html, body {
+/* Prevent horizontal overflow globally.
+   IMPORTANT: overflow-x: hidden on <body> creates a new scroll container
+   which breaks position:sticky on all descendants.
+   On <html>, the browser propagates it to the viewport instead — safe. */
+html {
   overflow-x: hidden;
-  width: 100%;
   -webkit-text-size-adjust: 100%;
+}
+body {
+  width: 100%;
+  /* Do NOT set overflow-x here — it breaks position:sticky */
 }
 
 * {
