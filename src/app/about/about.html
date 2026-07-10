@@ -1,23 +1,63 @@
 <section id="about" class="about-section">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-    <div scrollAnimate [animationDelay]="0">
-      <p class="text-appleBlue text-xs sm:text-sm font-medium tracking-[0.1em] uppercase mb-3">About Me</p>
-      <h2 class="about-heading font-medium tracking-tight md:sticky md:top-24">
-        Built for<br>Scale &amp; Impact
-      </h2>
-    </div>
-    <div class="space-y-6 md:space-y-8 about-body leading-relaxed">
-      <p scrollAnimate [animationDelay]="100">
-        With over eight years of experience across industry giants like Verizon, Deloitte, and TCS, I specialize in
-        crafting robust, full-stack architectures. From replacing legacy iframe UIs with modern React components to
-        engineering Spring Boot microservices handling high-frequency APIs, my focus is always on performance and
-        reliability.
-      </p>
-      <p scrollAnimate [animationDelay]="200">
-        Beyond the code, I am driven by operational efficiency and strategic growth. Holding an MBA in Business
-        Analytics from BITS Pilani allows me to bridge the critical gap between complex engineering solutions and
-        tangible business value.
-      </p>
+  <div class="max-w-5xl mx-auto">
+
+    <!-- Apple-style top rule -->
+    <div class="about-rule" aria-hidden="true"></div>
+
+    <div class="about-grid">
+
+      <!-- LEFT: Sticky — NO scrollAnimate (transforms break sticky) -->
+      <div class="about-left">
+        <div class="about-sticky">
+          <p class="about-eyebrow">About Me</p>
+          <h2 class="about-heading">
+            Built for<br>Scale<br>&amp; Impact
+          </h2>
+        </div>
+      </div>
+
+      <!-- RIGHT: Scrollable content blocks -->
+      <div class="about-right">
+
+        <p scrollAnimate [animationDelay]="0" class="about-body-text">
+          With over <strong class="about-strong">eight years of experience</strong> across Verizon,
+          Deloitte, and TCS, I specialize in crafting robust full-stack architectures — from replacing
+          legacy iframe UIs with modern React components to engineering Spring Boot microservices
+          handling high-frequency APIs.
+        </p>
+
+        <p scrollAnimate [animationDelay]="80" class="about-body-text">
+          My focus is always on <strong class="about-strong">performance and reliability</strong> at scale.
+          Whether it's a 40% reduction in load times or designing systems that handle millions of requests
+          per day, engineering excellence is non-negotiable.
+        </p>
+
+        <!-- Apple-style callout quote -->
+        <div scrollAnimate [animationDelay]="160" class="about-callout">
+          <div class="about-callout-bar" aria-hidden="true"></div>
+          <p class="about-callout-text">
+            "Holding an MBA in Business Analytics from BITS Pilani lets me bridge the critical gap
+            between complex engineering solutions and tangible business outcomes."
+          </p>
+        </div>
+
+        <!-- Highlight chips — Apple-style fact row -->
+        <div scrollAnimate [animationDelay]="240" class="about-chips">
+          <div class="about-chip">
+            <span class="about-chip-num">8+</span>
+            <span class="about-chip-label">Years of Experience</span>
+          </div>
+          <div class="about-chip">
+            <span class="about-chip-num">3</span>
+            <span class="about-chip-label">Fortune 500 Companies</span>
+          </div>
+          <div class="about-chip">
+            <span class="about-chip-num">MBA</span>
+            <span class="about-chip-label">Business Analytics · BITS Pilani</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 </section>

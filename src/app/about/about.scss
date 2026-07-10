@@ -1,14 +1,148 @@
 .about-section {
-  padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 5vw, 2rem);
+  padding: clamp(5rem, 12vw, 8rem) clamp(1rem, 5vw, 2.5rem);
+  overflow: visible; /* must NOT be hidden — breaks sticky */
 }
 
+/* Apple-style thin rule at section top */
+.about-rule {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+/* Two-column grid — CRITICAL: align-items:start for sticky to work */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1.3fr;
+    gap: clamp(3rem, 6vw, 5rem);
+    align-items: start; /* REQUIRED — stretch (default) breaks sticky */
+  }
+}
+
+/* Left column wrapper — must not have overflow:hidden or transform */
+.about-left {
+  /* no transform, no overflow:hidden */
+}
+
+/* The sticky block — sits inside the left column */
+.about-sticky {
+  @media (min-width: 768px) {
+    position: sticky;
+    top: 5.5rem; /* 88px — clears the 64px nav */
+  }
+}
+
+.about-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #2997ff;
+  margin-bottom: 1rem;
+}
+
+/* Apple-style large headline — fluid */
 .about-heading {
-  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  font-weight: 600;
   color: #f5f5f7;
-  line-height: 1.15;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
-.about-body {
+/* ── Right column ─────────────────── */
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+.about-body-text {
+  font-size: clamp(1rem, 2.5vw, 1.15rem);
   color: #86868b;
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  line-height: 1.75;
+  margin: 0;
+}
+
+.about-strong {
+  color: #c8c8cc;
+  font-weight: 500;
+}
+
+/* Apple-style left-bar callout quote */
+.about-callout {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: rgba(41, 151, 255, 0.05);
+  border-radius: 16px;
+  position: relative;
+}
+
+.about-callout-bar {
+  width: 3px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #2997ff, #5ac8fa);
+  flex-shrink: 0;
+  align-self: stretch;
+}
+
+.about-callout-text {
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  color: #c8c8cc;
+  line-height: 1.7;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Highlight fact chips — Apple-style */
+.about-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.about-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  min-width: 120px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: rgba(41, 151, 255, 0.25);
+      background: rgba(41, 151, 255, 0.06);
+    }
+  }
+}
+
+.about-chip-num {
+  font-size: clamp(1.3rem, 3.5vw, 1.75rem);
+  font-weight: 700;
+  color: #f5f5f7;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  background: linear-gradient(135deg, #f5f5f7 0%, #2997ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-chip-label {
+  font-size: 0.7rem;
+  color: #86868b;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
 }
