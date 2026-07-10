@@ -6,7 +6,7 @@
 
     <div class="about-grid">
 
-      <!-- LEFT: Sticky — NO scrollAnimate (transforms break sticky) -->
+      <!-- LEFT: Sticky block — NO scrollAnimate here (transforms break sticky) -->
       <div class="about-left">
         <div class="about-sticky">
           <p class="about-eyebrow">About Me</p>
@@ -16,20 +16,22 @@
         </div>
       </div>
 
-      <!-- RIGHT: Scrollable content blocks -->
+      <!-- RIGHT: Scrollable content — each child gets scrollAnimate -->
       <div class="about-right">
 
+        <!-- Block 1 -->
         <p scrollAnimate [animationDelay]="0" class="about-body-text">
           With over <strong class="about-strong">eight years of experience</strong> across Verizon,
           Deloitte, and TCS, I specialize in crafting robust full-stack architectures — from replacing
           legacy iframe UIs with modern React components to engineering Spring Boot microservices
-          handling high-frequency APIs.
+          handling high-frequency APIs at scale.
         </p>
 
+        <!-- Block 2 -->
         <p scrollAnimate [animationDelay]="80" class="about-body-text">
-          My focus is always on <strong class="about-strong">performance and reliability</strong> at scale.
-          Whether it's a 40% reduction in load times or designing systems that handle millions of requests
-          per day, engineering excellence is non-negotiable.
+          My focus is always on <strong class="about-strong">performance and reliability</strong>.
+          Whether it's a 40% reduction in load times, zero-downtime deployments, or designing systems
+          that process millions of transactions daily — engineering excellence is the baseline, not the goal.
         </p>
 
         <!-- Apple-style callout quote -->
@@ -37,11 +39,12 @@
           <div class="about-callout-bar" aria-hidden="true"></div>
           <p class="about-callout-text">
             "Holding an MBA in Business Analytics from BITS Pilani lets me bridge the critical gap
-            between complex engineering solutions and tangible business outcomes."
+            between complex engineering solutions and tangible business outcomes — from system
+            architecture down to P&amp;L impact."
           </p>
         </div>
 
-        <!-- Highlight chips — Apple-style fact row -->
+        <!-- Highlight fact chips -->
         <div scrollAnimate [animationDelay]="240" class="about-chips">
           <div class="about-chip">
             <span class="about-chip-num">8+</span>
@@ -54,6 +57,38 @@
           <div class="about-chip">
             <span class="about-chip-num">MBA</span>
             <span class="about-chip-label">Business Analytics · BITS Pilani</span>
+          </div>
+        </div>
+
+        <!-- Block 3: Values -->
+        <div scrollAnimate [animationDelay]="320" class="about-values">
+          <div class="about-value-item">
+            <div class="about-value-icon">⚡</div>
+            <div>
+              <div class="about-value-text">Performance First</div>
+              <div class="about-value-desc">Every system optimized for speed and efficiency</div>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon">🏗️</div>
+            <div>
+              <div class="about-value-text">Architecture at Scale</div>
+              <div class="about-value-desc">Microservices, distributed systems, cloud-native</div>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon">📊</div>
+            <div>
+              <div class="about-value-text">Data-Driven Decisions</div>
+              <div class="about-value-desc">Business analytics meets engineering judgment</div>
+            </div>
+          </div>
+          <div class="about-value-item">
+            <div class="about-value-icon">🤝</div>
+            <div>
+              <div class="about-value-text">Cross-Functional Impact</div>
+              <div class="about-value-desc">Bridging product, design, and engineering teams</div>
+            </div>
           </div>
         </div>
 
