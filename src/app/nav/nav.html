@@ -27,18 +27,8 @@
       }
     </div>
 
-    <!-- Resume CTA + Hamburger -->
+    <!-- Hamburger -->
     <div class="flex items-center gap-3">
-      <button
-        (click)="downloadResume()"
-        id="nav-resume-btn"
-        class="hidden md:flex items-center gap-2 bg-appleBlue text-white px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 hover:scale-105 transition-all duration-200"
-      >
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-        Resume
-      </button>
 
       <!-- Hamburger -->
       <button
@@ -72,16 +62,7 @@
           {{ link.label }}
         </button>
       }
-      <button
-        (click)="downloadResume()"
-        id="nav-mobile-resume-btn"
-        class="w-full flex items-center gap-2 justify-center bg-appleBlue text-white px-5 py-3 rounded-full text-sm font-medium mt-2"
-      >
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-        </svg>
-        Download Resume
-      </button>
+
     </div>
   }
 </nav>

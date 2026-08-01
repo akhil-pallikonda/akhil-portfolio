@@ -32,7 +32,7 @@ export class Projects {
       liveUrl: '#',
     },
     {
-      title: 'Subscription Admin Internal Portal',
+      title: 'Admin Internal Portal',
       company: 'Deloitte · Ascension Health',
       companyColor: '#86bc25',
       description:

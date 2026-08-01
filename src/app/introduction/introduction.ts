@@ -84,8 +84,8 @@ export class Introduction implements OnInit, OnDestroy {
 
   downloadResume(): void {
     const link = document.createElement('a');
-    link.href = 'Resume - Akhil Pallikonda.pdf';
-    link.download = 'Resume - Akhil Pallikonda.pdf';
+    link.href = 'WebResume - Akhil Pallikonda.pdf';
+    link.download = 'WebResume - Akhil Pallikonda.pdf';
     link.click();
   }
 
